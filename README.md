@@ -1,4 +1,17 @@
-# chat-example
+# checkbox-example
 
-very simple chat example
+very simple - jquery check uncheck all checkboxes with a button
+
+
+
+
+
+
+
+
+
+
+
+
+#ishwar chandra tiwari- ishwardeveloper@gmail.com
 

@@ -1,49 +1,67 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Socket.IO chat</title>
-    <!-- ishwardeveloper@gmail.com -->
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: rgb(22, 21, 21); padding: 40px; position: fixed; bottom: 0; width: 100%;  }
-      h2{color: rgb(248, 241, 241); border: 0; padding: 10px; margin-right: .5%;  width: 50%; height: 50px;}
-      form input { border: 0; padding: 10px; margin-right: .5%;  width: 50%; height: 50px;
- }
-      form select { border: 0; padding: 10px; margin-right: .5%;  width: 25%;  height: 50px;
-}
-      form button { background: rgb(130, 224, 255); border: none; padding: 10px; height: 50px;width: 100px
-}
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px;  }
-      /* #messages li:nth-child(odd) {     background: #0e0e0e;
-    color: white;
-    font-weight: 900; } */
-      #messages { margin-bottom: 40px }
-    </style>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <h2 >Message id: <span id="idd"></span></h2>
-      <input id="m" autocomplete="off" required /><button>Send</button>
-    </form>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      var socket = io();
-    
-      $(function () {
-        $('#idd').html('_' + Math.random('ishwar chandra tiwari').toString(32).substr(2, 5))
-        $('form').submit(function(){
-          socket.emit('chat message', {message:$('#m').val(), from:document.getElementById('idd').innerHTML});
-          return false;
+
+<head>
+  <title>check uncheck checkbox- ishwar chandra tiwari</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="very simple - jquery check uncheck all checkboxes with a button
+  ,select deselect all checkboxes using jquery">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript, ishwar chandra tiwari, checkbox">
+  <meta name="author" content="Ishwar chandra tiwari">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ishwardeveloper@gmail.com -->
+  <style>
+  </style>
+</head>
+
+
+<body>
+  <div>
+    <input type="checkbox" class="" id='vehicle' name="vehicle" value="All"> <span id="wd">check all</span><br>
+    <input type="checkbox" class="checkbox"  data-id="1" name="vehicle1" value="Bike"> I have a bike<br>
+    <input type="checkbox" class="checkbox" data-id="2" name="vehicle2" value="Car"> I have a car<br>
+    <input type="checkbox" class="checkbox" data-id="3" name="vehicle3" value="Boat"> I have a boat<br>
+    <input type="checkbox" class="checkbox" data-id="4" name="vehicle4" value="Boat1"> I have a boat1<br>
+    <input type="checkbox" class="checkbox" data-id="5" name="vehicle5" value="Boat2"> I have a boat2<br>
+    <input type="button" id='button' class="checkbox1" name="vehicle51" value="ok"><br>
+    <span id="wdshow"></span>
+    <ul id="dsfvg">
+      <li>All Selected Data-</li>
+    </ul>
+
+  </div>
+  <hr><br>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+
+    jQuery(document).ready(function () {
+      $("#vehicle").change(function () {
+        if ($("#vehicle:checked").length) {
+          $(".checkbox").prop("checked", true);
+          $('#wd').html("uncheck all");
+        } else {
+          $(".checkbox").prop("checked", false);
+          $('#wd').html("check all");
+        }
+      })
+      $("#button").click(function () {
+        var yourArray=[];
+        $("input:checkbox[class=checkbox]:checked").each(function () {
+          // console.log(yourArray,'=======',this,this.value,this.name,this.getAttribute('data-id'),this.dataset.id)
+          yourArray.push({"value":$(this).val(),"name":this.name,'data-id':this.dataset.id});
         });
-        socket.on('chat message', function(data){
-          $('#messages').append($('<li>').html("<b>"+data.from+' </b>puts message'+": <span style='font-size:20px;'>&#8658;</span> "+ data.message));
-          window.scrollTo(0, document.body.scrollHeight);
-        });
-      });
-    </script>
-  </body>
+        // $('#wdshow').html(yourArray);
+        console.log(yourArray)
+        if(yourArray && yourArray.length>0){
+          for(i=0;i<=yourArray.length;i++){
+            $('#dsfvg').append(`<li>Name: ${yourArray[0].name}, Value: ${yourArray[0].value}</li>`);
+          }
+        }
+        // alert(yourArray)
+      })
+    });
+
+  </script>
+</body>
+
 </html>
