@@ -18,11 +18,11 @@
 <body>
   <div>
     <input type="checkbox" class="" id='vehicle' name="vehicle" value="All"> <span id="wd">check all</span><br>
-    <input type="checkbox" class="checkbox"  data-id="1" name="vehicle1" value="Bike"> I have a bike<br>
-    <input type="checkbox" class="checkbox" data-id="2" name="vehicle2" value="Car"> I have a car<br>
-    <input type="checkbox" class="checkbox" data-id="3" name="vehicle3" value="Boat"> I have a boat<br>
-    <input type="checkbox" class="checkbox" data-id="4" name="vehicle4" value="Boat1"> I have a boat1<br>
-    <input type="checkbox" class="checkbox" data-id="5" name="vehicle5" value="Boat2"> I have a boat2<br>
+    <input type="checkbox" class="checkbox"  data-id="1" name="vehicle1" value="I have a bike"> I have a bike<br>
+    <input type="checkbox" class="checkbox" data-id="2" name="vehicle2" value="I have a car"> I have a car<br>
+    <input type="checkbox" class="checkbox" data-id="3" name="vehicle3" value="I have a boat"> I have a boat<br>
+    <input type="checkbox" class="checkbox" data-id="4" name="vehicle4" value="I have a bus"> I have a bus<br>
+    <input type="checkbox" class="checkbox" data-id="5" name="vehicle5" value="I have a train"> I have a train<br>
     <input type="button" id='button' class="checkbox1" name="vehicle51" value="ok"><br>
     <span id="wdshow"></span>
     <ul id="dsfvg">
@@ -46,15 +46,24 @@
       })
       $("#button").click(function () {
         var yourArray=[];
+        // $('#dsfvg')
+        $("ul").html('')
+
+//         a = []; // 37% slower
+// a.length = 0; // 89% slower
+// a.splice(0, a.length)  // 97% slower
+// while (yourArray.length > 0) {
+//     yourArray.pop();
+// } // Fastest
         $("input:checkbox[class=checkbox]:checked").each(function () {
-          // console.log(yourArray,'=======',this,this.value,this.name,this.getAttribute('data-id'),this.dataset.id)
+          // console.log('=====1=====',{yourArray},'=======',this,'========',{"value":$(this).val(),"name":this.name,'data-id':this.dataset.id})
           yourArray.push({"value":$(this).val(),"name":this.name,'data-id':this.dataset.id});
         });
         // $('#wdshow').html(yourArray);
-        console.log(yourArray)
+        // console.log('=====2======',{yourArray})
         if(yourArray && yourArray.length>0){
           for(i=0;i<=yourArray.length;i++){
-            $('#dsfvg').append(`<li>Name: ${yourArray[0].name}, Value: ${yourArray[0].value}</li>`);
+            $('#dsfvg').append(`<li>Name: ${yourArray[i].name}, Value: ${yourArray[i].value}</li>`);
           }
         }
         // alert(yourArray)
